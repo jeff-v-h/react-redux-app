@@ -49,6 +49,11 @@ class CoursesPage extends React.Component {
   }
 }
 
+CoursesPage.propTypes = {
+  actions: PropTypes.object.isRequired,
+  courses: PropTypes.array.isRequired
+};
+
 function mapStateToProps(state, ownProps) {
   return {
     courses: state.courses
@@ -61,10 +66,5 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(courseActions, dispatch)
   };
 }
-
-CoursesPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  courses: PropTypes.array.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
