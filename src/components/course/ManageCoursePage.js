@@ -18,6 +18,17 @@ class ManageCoursePage extends React.Component {
     this.saveCourse = this.saveCourse.bind(this);
   }
 
+  // anytime props have changed or when React THINKS props may have changed 
+  // ie. may run even if props havent actually changed - Will be run as safety
+  // Hence the if check to double check whether the if has actually changed
+  // Using this method will ensure the props will populate the form when directly entering into url
+  componentWillReceiveProps(nextProps) {
+    if (this.props.course.id != nextProps.course.id) {
+      //Necessary to populate form when existing course is loaded directly.
+      this.setState({course: Object.assign({}, nextProps.course)});
+    }
+  }
+
   updateCourseState(event) {
     const field = event.target.name;
     let course = Object.assign({}, this.state.course);
